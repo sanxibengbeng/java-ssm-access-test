@@ -6,12 +6,19 @@ CLUSTER_NAME="kafka-client-cluster"
 REGION="us-east-1"
 SERVICE_ACCOUNT_NAME="kafka-client-sa"
 VERSION_HISTORY_FILE="version_history"
+TEMPLATE_FILE="deployment.tpl.yaml"
+DEPLOYMENT_FILE="deployment.yaml"
 
 echo "===== 部署应用到 EKS ====="
 
-# 1. 检查版本历史文件是否存在
+# 1. 检查版本历史文件和模板文件是否存在
 if [ ! -f "${VERSION_HISTORY_FILE}" ]; then
   echo "错误: 版本历史文件 ${VERSION_HISTORY_FILE} 不存在"
+  exit 1
+fi
+
+if [ ! -f "${TEMPLATE_FILE}" ]; then
+  echo "错误: 模板文件 ${TEMPLATE_FILE} 不存在"
   exit 1
 fi
 
@@ -49,15 +56,15 @@ if [ -z "${ROLE_ARN}" ]; then
 fi
 echo "服务账户角色 ARN: ${ROLE_ARN}"
 
-# 8. 替换部署文件中的变量
-echo "更新部署文件..."
-cp deployment.yaml deployment.yaml.bak
-sed -i.bak "s|\${ECR_IMAGE_URI}|${IMAGE_URI}|g" deployment.yaml
-sed -i.bak "s|\${SERVICE_ACCOUNT_ROLE_ARN}|${ROLE_ARN}|g" deployment.yaml
+# 8. 从模板创建部署文件并替换变量
+echo "从模板创建部署文件..."
+cp "${TEMPLATE_FILE}" "${DEPLOYMENT_FILE}"
+sed -i.bak "s|\${ECR_IMAGE_URI}|${IMAGE_URI}|g" "${DEPLOYMENT_FILE}"
+sed -i.bak "s|\${SERVICE_ACCOUNT_ROLE_ARN}|${ROLE_ARN}|g" "${DEPLOYMENT_FILE}"
 
 # 9. 部署应用
 echo "部署应用到 EKS..."
-kubectl apply -f deployment.yaml
+kubectl apply -f "${DEPLOYMENT_FILE}"
 
 # 10. 等待部署完成
 echo "等待部署完成..."

@@ -20,7 +20,8 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-secretsmanager</artifactId>
-            <version>${aws.sdk.version}</version>
+            <version>1.11.870</version>
+            <!-- <version>${aws.sdk.version}</version> -->
         </dependency>
         
         <!-- Apache Kafka Client -->

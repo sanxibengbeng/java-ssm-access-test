@@ -4,7 +4,7 @@ metadata:
   name: kafka-client-sa
   namespace: default
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::873543029686:role/eksctl-kafka-client-cluster-addon-iamservicea-Role1-OILESK310yYh
+    eks.amazonaws.com/role-arn: ${SERVICE_ACCOUNT_ROLE_ARN}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -35,7 +35,7 @@ spec:
       serviceAccountName: kafka-client-sa
       containers:
       - name: kafka-client
-        image: 873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:v20250420005725
+        image: ${ECR_IMAGE_URI}
         env:
         - name: BOOTSTRAP_SERVERS
           valueFrom:

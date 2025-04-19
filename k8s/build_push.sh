@@ -24,11 +24,11 @@ TIMESTAMP=$(date +%Y%m%d%H%M%S)
 VERSION="v${TIMESTAMP}"
 echo "使用版本号: ${VERSION}"
 
-# 4. 构建并推送 Docker 镜像
+# 4. 构建并推送 Docker 镜像（指定平台为 linux/amd64）
 echo "构建并推送 Docker 镜像..."
 # 确保在项目根目录
 cd /Users/yulongzh/projects/architect-generation
-docker build -t ${ECR_REPO_NAME}:${VERSION} .
+docker build --platform linux/amd64 -t ${ECR_REPO_NAME}:${VERSION} .
 docker tag ${ECR_REPO_NAME}:${VERSION} ${ECR_URI}/${ECR_REPO_NAME}:${VERSION}
 docker push ${ECR_URI}/${ECR_REPO_NAME}:${VERSION}
 
