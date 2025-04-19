@@ -1,1 +1,4 @@
 deployment.yaml
+version_history
+kafka-client.jar
+kafka-config.yaml
