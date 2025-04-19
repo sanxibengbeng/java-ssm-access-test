@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM --platform=linux/amd64 openjdk:11-jre-slim
 
 WORKDIR /app
 
