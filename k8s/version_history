@@ -3,3 +3,4 @@ fix-20250419224955|873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:fix
 fix-arm64-20250419233842|873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:fix-arm64-20250419233842|Sat Apr 19 23:39:58 CST 2025 - ARM64 架构
 v20250420004434|873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:v20250420004434|Sun Apr 20 00:45:30 CST 2025
 v20250420005725|873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:v20250420005725|Sun Apr 20 00:58:06 CST 2025
+v20250420010553|873543029686.dkr.ecr.us-east-1.amazonaws.com/kafka-client:v20250420010553|Sun Apr 20 01:06:44 CST 2025
